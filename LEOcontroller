@@ -44,7 +44,7 @@ void loop() {
     Joystick.setHatSwitch(1, 0);
    } else if(HatY > 2 && HatX < 2 ){
     Joystick.setHatSwitch(1, 45);
-   }  else if(HatY == 2 && HatX == 2 ){
+   }  else if(HatY == 2 && HatX < 2 ){
     Joystick.setHatSwitch(1, 90);
    } else if(HatY < 2 && HatX < 2 ){
     Joystick.setHatSwitch(1, 135);
