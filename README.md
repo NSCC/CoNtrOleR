@@ -1,2 +1,2 @@
 # CoNtrOleR
-yup
+The wiki contains our Scrum minutes and other work
