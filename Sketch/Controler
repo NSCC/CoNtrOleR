@@ -1,0 +1,180 @@
+#define P_triangle 21
+#define P_circle 20
+#define P_x 19
+#define P_square 18
+
+#define P_up 2
+#define P_down 4
+#define P_left 3
+#define P_right 5
+
+#define P_r1 23
+#define P_r2 22
+
+#define P_l1 0
+#define P_l2 1
+
+#define P_start 17
+#define P_select 6
+
+#define P_analogButton1 12
+#define P_analogButton2 14
+
+#define P_analogX 16
+#define P_analogY 17
+#define P_analogZ 2
+#define P_analogZR 1
+
+
+void setup() {
+  
+  Joystick.useManualSend(true);
+  
+  pinMode(P_triangle, INPUT_PULLUP);
+  pinMode(P_circle, INPUT_PULLUP);
+  pinMode(P_x, INPUT_PULLUP);
+  pinMode(P_square, INPUT_PULLUP);
+  pinMode(P_up, INPUT_PULLUP);
+  pinMode(P_down, INPUT_PULLUP);
+  pinMode(P_left, INPUT_PULLUP);
+  pinMode(P_right, INPUT_PULLUP);
+  pinMode(P_r1, INPUT_PULLUP);
+  pinMode(P_r2, INPUT_PULLUP);
+  pinMode(P_l1, INPUT_PULLUP);
+  pinMode(P_l2, INPUT_PULLUP);
+  pinMode(P_start, INPUT_PULLUP);
+  pinMode(P_select, INPUT_PULLUP);
+  pinMode(P_analogButton1, INPUT_PULLUP);
+  pinMode(P_analogButton2, INPUT_PULLUP);
+}
+
+void loop() {
+  // read 6 analog inputs and use them for the joystick axis
+  Joystick.X(analogRead(0));
+  Joystick.Y(analogRead(1));
+  
+  Joystick.Z(analogRead(2));
+  Joystick.Zrotate(analogRead(3));
+  
+  if (digitalRead(P_triangle) == HIGH) {
+    Joystick.button(4, 1);
+  }else {
+    Joystick.button(4, 0);
+  }
+  
+  if (digitalRead(P_circle) == HIGH) {
+    Joystick.button(3, 1);
+  }else {
+    Joystick.button(3, 0);
+  }
+  
+  if (digitalRead(P_square) == HIGH) {
+    Joystick.button(1, 1);
+  }else {
+    Joystick.button(1, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  if (digitalRead() == HIGH) {
+    Joystick.button(, 1);
+  }else {
+    Joystick.button(, 0);
+  }
+  
+  
+  
+  
+  
+  
+  // Because setup configured the Joystick manual send,
+  // the computer does not see any of the changes yet.
+  // This send_now() transmits everything all at once.
+  Joystick.send_now();
+  
+  
+  // a brief delay, so this runs "only" 200 times per second
+  delay(5);
+}
