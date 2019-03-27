@@ -53,11 +53,14 @@ void setup() {
 
 void loop() {
   // read 6 analog inputs and use them for the joystick axis  
-  Joystick.X(analogRead(11));d 
+  Joystick.X(analogRead(11)); 
   Joystick.Y(analogRead(10)); 
   
   Joystick.Z(analogRead(15));
   Joystick.Zrotate(analogRead(16));
+
+  Joystick.sliderLeft(analogRead(16));
+  Joystick.sliderRight(analogRead(16) );
   
   if (digitalRead(P_triangle) == HIGH) {
     Joystick.button(4, 1);
@@ -175,7 +178,8 @@ void loop() {
   }
   
   
-
+  
+  
   // Because setup configured the Joystick manual send,
   // the computer does not see any of the changes yet.
   // This send_now() transmits everything all at once.
