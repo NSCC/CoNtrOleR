@@ -26,6 +26,9 @@
 #define P_analogZR 1
 
 
+int HatY = 2;
+int HatX = 2;
+
 void setup() {
   
   Joystick.useManualSend(true);
@@ -74,97 +77,102 @@ void loop() {
     Joystick.button(1, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_x) == HIGH) {
+    Joystick.button(2, 1);
   }else {
-    Joystick.button(, 0);
+    Joystick.button(2, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_r1) == HIGH) {
+    Joystick.button(5, 1);
   }else {
-    Joystick.button(, 0);
+    Joystick.button(5, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_r2) == HIGH) {
+    Joystick.button(7, 1);
   }else {
-    Joystick.button(, 0);
+    Joystick.button(7, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_l1) == HIGH) {
+    Joystick.button(6, 1);
   }else {
-    Joystick.button(, 0);
+    Joystick.button(6, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_l2) == HIGH) {
+    Joystick.button(8, 1);
   }else {
-    Joystick.button(, 0);
+    Joystick.button(8, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_start) == HIGH) {
+    Joystick.button(10, 1);
   }else {
-    Joystick.button(, 0);
+    Joystick.button(10, 0);
   }
   
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
+  if (digitalRead(P_select) == HIGH) {
+    Joystick.button(9, 1);
   }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
-  }
-  
-  if (digitalRead() == HIGH) {
-    Joystick.button(, 1);
-  }else {
-    Joystick.button(, 0);
+    Joystick.button(9, 0);
   }
   
   
+  if (digitalRead(P_analogButton1) == HIGH) {
+    Joystick.button(11, 1);
+  }else {
+    Joystick.button(11, 0);
+  }
+  
+  if (digitalRead(P_analogButton2) == HIGH) {
+    Joystick.button(12, 1);
+  }else {
+    Joystick.button(12, 0);
+  }
+  
+
+  
+  //D-pad
+//if statements are done like this so that it's default state (when both buttons are not pushed) has the least amount of code to run though
+//
+  if (digitalRead(B_up) == LOW) {
+    if (digitalRead(B_down) == LOW) {
+    //if nether of the buttons are pushed set HatY to 2 (It's default value)
+      HatY = 2;
+    }else {
+        HatY = 1;
+        }
+  } else {
+      HatY = 3;
+  }
+  
+  if (digitalRead(B_left) == LOW) {
+    if (digitalRead(B_right) == LOW) {
+    //if nether of the buttons are pushed set HatY to 2 (It's default value)
+      HatX = 2;
+    }else {
+        HatX = 1;
+        }
+  } else {
+      HatX = 3;
+  }
+  
+  //d-pad
+  if(HatX == 2) {
+    if(HatY == 2) {
+    Joystick.hat(-1);
+    } else {
+    Joystick.hat((((2*HatY)+2)*45));
+    }
+    
+  } else if (HatX == 1) {
+    Joystick.hat(((4-HatY)*45));
+  
+  } else {
+    Joystick.hat(((4+HatY)*45));
+  }
   
   
   
