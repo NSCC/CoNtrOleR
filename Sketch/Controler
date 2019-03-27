@@ -1,6 +1,6 @@
 #define P_triangle 21
-#define P_circle 20
-#define P_x 19
+#define P_circle 19
+#define P_x 20
 #define P_square 18
 
 #define P_up 2
@@ -8,11 +8,11 @@
 #define P_left 3
 #define P_right 5
 
-#define P_r1 23
-#define P_r2 22
+#define P_r1 1
+#define P_r2 0
 
-#define P_l1 0
-#define P_l2 1
+#define P_l1 22
+#define P_l2 23
 
 #define P_start 17
 #define P_select 6
@@ -52,12 +52,12 @@ void setup() {
 }
 
 void loop() {
-  // read 6 analog inputs and use them for the joystick axis
-  Joystick.X(analogRead(0));
-  Joystick.Y(analogRead(1));
+  // read 6 analog inputs and use them for the joystick axis  
+  Joystick.X(analogRead(11)); 
+  Joystick.Y(analogRead(10)); 
   
-  Joystick.Z(analogRead(2));
-  Joystick.Zrotate(analogRead(3));
+  Joystick.Z(analogRead(15));
+  Joystick.Zrotate(analogRead(16));
   
   if (digitalRead(P_triangle) == HIGH) {
     Joystick.button(4, 1);
@@ -137,8 +137,8 @@ void loop() {
   //D-pad
 //if statements are done like this so that it's default state (when both buttons are not pushed) has the least amount of code to run though
 //
-  if (digitalRead(B_up) == LOW) {
-    if (digitalRead(B_down) == LOW) {
+  if (digitalRead(P_up) == LOW) {
+    if (digitalRead(P_down) == LOW) {
     //if nether of the buttons are pushed set HatY to 2 (It's default value)
       HatY = 2;
     }else {
@@ -148,8 +148,8 @@ void loop() {
       HatY = 3;
   }
   
-  if (digitalRead(B_left) == LOW) {
-    if (digitalRead(B_right) == LOW) {
+  if (digitalRead(P_left) == LOW) {
+    if (digitalRead(P_right) == LOW) {
     //if nether of the buttons are pushed set HatY to 2 (It's default value)
       HatX = 2;
     }else {
