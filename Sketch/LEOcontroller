@@ -20,8 +20,8 @@
 #define B_l1 97
 #define B_l2 96
 
-#define B_start 13
-#define B_select 12
+//#define B_start 13
+//#define B_select 12
 
 
 Joystick_ Joystick[1] = {
@@ -46,6 +46,7 @@ Joystick[0].setRxAxisRange(-127, 127);
 Joystick[0].setRyAxisRange(-127, 127);
 
 Joystick[0].begin();
+Serial.begin(115200);
   
   // Initialize Button Pins
   pinMode(B_triangle, INPUT_PULLUP);
@@ -58,8 +59,8 @@ Joystick[0].begin();
   pinMode(B_left, INPUT_PULLUP);
   pinMode(B_right, INPUT_PULLUP);
 
-  pinMode(B_start, INPUT_PULLUP);
-  pinMode(B_select, INPUT_PULLUP);
+//  pinMode(B_start, INPUT_PULLUP);
+//  pinMode(B_select, INPUT_PULLUP);
 
 }
 
@@ -92,17 +93,17 @@ void loop() {
 
 
 //option cluster
-  if (digitalRead(B_start) == HIGH) {
-    Joystick[0].setButton(7, 1);
-  }else {
-    Joystick[0].setButton(7, 0);
-  }
-
-  if (digitalRead(B_select) == HIGH) {
-    Joystick[0].setButton(6, 1);
-  }else {
-    Joystick[0].setButton(6, 0);
-  }
+//  if (digitalRead(B_start) == HIGH) {
+//    Joystick[0].setButton(7, 1);
+//  }else {
+//    Joystick[0].setButton(7, 0);
+//  }
+//
+//  if (digitalRead(B_select) == HIGH) {
+//    Joystick[0].setButton(6, 1);
+//  }else {
+//    Joystick[0].setButton(6, 0);
+//  }
 
 
 
@@ -132,12 +133,11 @@ void loop() {
   }
 
   
-  Joystick[0].setYAxis(map(analogRead(A0), 0, 1023, 127, -127));
+  Joystick[0].setYAxis(map(analogRead(A0), 0, 1023, -127, 127));
   Joystick[0].setXAxis(map(analogRead(A1), 0, 1023, 127, -127));
   
-  Joystick[0].setRyAxis(map(analogRead(A0), 0, 1023, 127, -127));
-  Joystick[0].setRxAxis(map(analogRead(A1), 0, 1023, 127, -127));
-
+  Joystick[0].setRyAxis(map(analogRead(A2), 0, 1023, 127, -127)+38);
+  Joystick[0].setRxAxis(map(analogRead(A3), 0, 1023, 127, -127)-5);
 
 //d-pad
   if(HatX == 2) {
@@ -176,6 +176,3 @@ void loop() {
 //      Joystick[0].setHatSwitch(0, 315);
 //     } 
 }
-
-
-
