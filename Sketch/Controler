@@ -28,6 +28,7 @@
 
 int HatY = 2;
 int HatX = 2;
+int test = 0;
 
 void setup() {
   
@@ -53,14 +54,15 @@ void setup() {
 
 void loop() {
   // read 6 analog inputs and use them for the joystick axis  
-  Joystick.X(analogRead(11)); 
+  Joystick.X(1023-analogRead(11)); 
   Joystick.Y(analogRead(10)); 
   
-  Joystick.Z(analogRead(15));
-  Joystick.Zrotate(analogRead(16));
+  Joystick.Z(1023-analogRead(15));
+  Joystick.Zrotate(analogRead(16)+10);
+  
+  Joystick.sliderLeft(1000);
+  Joystick.sliderRight(1000);
 
-  Joystick.sliderLeft(analogRead(16));
-  Joystick.sliderRight(analogRead(16) );
   
   if (digitalRead(P_triangle) == HIGH) {
     Joystick.button(4, 1);
@@ -85,55 +87,55 @@ void loop() {
   }else {
     Joystick.button(2, 0);
   }
-  
-  if (digitalRead(P_r1) == HIGH) {
-    Joystick.button(5, 1);
-  }else {
-    Joystick.button(5, 0);
-  }
-  
-  if (digitalRead(P_r2) == HIGH) {
-    Joystick.button(7, 1);
-  }else {
-    Joystick.button(7, 0);
-  }
-  
-  if (digitalRead(P_l1) == HIGH) {
-    Joystick.button(6, 1);
-  }else {
-    Joystick.button(6, 0);
-  }
-  
-  if (digitalRead(P_l2) == HIGH) {
-    Joystick.button(8, 1);
-  }else {
-    Joystick.button(8, 0);
-  }
-  
-  if (digitalRead(P_start) == HIGH) {
-    Joystick.button(10, 1);
-  }else {
-    Joystick.button(10, 0);
-  }
-  
-  if (digitalRead(P_select) == HIGH) {
-    Joystick.button(9, 1);
-  }else {
-    Joystick.button(9, 0);
-  }
-  
-  
-  if (digitalRead(P_analogButton1) == HIGH) {
-    Joystick.button(11, 1);
-  }else {
-    Joystick.button(11, 0);
-  }
-  
-  if (digitalRead(P_analogButton2) == HIGH) {
-    Joystick.button(12, 1);
-  }else {
-    Joystick.button(12, 0);
-  }
+//  
+//  if (digitalRead(P_r1) == HIGH) {
+//    Joystick.button(5, 1);
+//  }else {
+//    Joystick.button(5, 0);
+//  }
+//  
+//  if (digitalRead(P_r2) == HIGH) {
+//    Joystick.button(7, 1);
+//  }else {
+//    Joystick.button(7, 0);
+//  }
+//  
+//  if (digitalRead(P_l1) == HIGH) {
+//    Joystick.button(6, 1);
+//  }else {
+//    Joystick.button(6, 0);
+//  }
+//  
+//  if (digitalRead(P_l2) == HIGH) {
+//    Joystick.button(8, 1);
+//  }else {
+//    Joystick.button(8, 0);
+//  }
+//  
+//  if (digitalRead(P_start) == HIGH) {
+//    Joystick.button(10, 1);
+//  }else {
+//    Joystick.button(10, 0);
+//  }
+//  
+//  if (digitalRead(P_select) == HIGH) {
+//    Joystick.button(9, 1);
+//  }else {
+//    Joystick.button(9, 0);
+//  }
+//  
+//  
+//  if (digitalRead(P_analogButton1) == HIGH) {
+//    Joystick.button(11, 1);
+//  }else {
+//    Joystick.button(11, 0);
+//  }
+//  
+//  if (digitalRead(P_analogButton2) == HIGH) {
+//    Joystick.button(12, 1);
+//  }else {
+//    Joystick.button(12, 0);
+//  }
   
 
   
