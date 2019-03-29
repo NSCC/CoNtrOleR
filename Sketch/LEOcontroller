@@ -20,14 +20,16 @@
 #define B_l1 97
 #define B_l2 96
 
+#define lowerLimit -127
+#define upperLimit 127
 //#define B_start 13
 //#define B_select 12
 
 
 Joystick_ Joystick[1] = {
   Joystick_(0x03, JOYSTICK_TYPE_GAMEPAD, 
-  14, 1,  
-  true, true, false, //X Y Z
+  32, 1,  
+  true, true, true, //X Y Z
   true, true, false, //Rx Ry Rz
   false, false,      //Rudder throttle
   false, false, false) //accel brake steer
@@ -39,11 +41,14 @@ int HatX = 2;
 
 void setup() {
 //init joystick
-Joystick[0].setXAxisRange(-127, 127);
-Joystick[0].setYAxisRange(-127, 127);
 
-Joystick[0].setRxAxisRange(-127, 127);
-Joystick[0].setRyAxisRange(-127, 127);
+Joystick[0].setXAxisRange(lowerLimit, upperLimit);
+Joystick[0].setYAxisRange(lowerLimit, upperLimit);
+Joystick[0].setZAxisRange(lowerLimit, upperLimit);
+
+Joystick[0].setRxAxisRange(lowerLimit, upperLimit);
+Joystick[0].setRyAxisRange(lowerLimit, upperLimit);
+Joystick[0].setRzAxisRange(lowerLimit, upperLimit);
 
 Joystick[0].begin();
 Serial.begin(115200);
@@ -68,21 +73,21 @@ void loop() {
 
 //action cluster
   if (digitalRead(B_x) == HIGH) {
-    Joystick[0].setButton(0, 1);
-  }else {
-    Joystick[0].setButton(0, 0);
-  }
-
-  if (digitalRead(B_circle) == HIGH) {
     Joystick[0].setButton(1, 1);
   }else {
     Joystick[0].setButton(1, 0);
   }
 
-  if (digitalRead(B_square) == HIGH) {
+  if (digitalRead(B_circle) == HIGH) {
     Joystick[0].setButton(2, 1);
   }else {
     Joystick[0].setButton(2, 0);
+  }
+
+  if (digitalRead(B_square) == HIGH) {
+    Joystick[0].setButton(0, 1);
+  }else {
+    Joystick[0].setButton(0, 0);
   }
 
   if (digitalRead(B_triangle) == HIGH) {
@@ -135,9 +140,13 @@ void loop() {
   
   Joystick[0].setYAxis(map(analogRead(A0), 0, 1023, -127, 127));
   Joystick[0].setXAxis(map(analogRead(A1), 0, 1023, 127, -127));
+  Joystick[0].setZAxis(0);
   
-  Joystick[0].setRyAxis(map(analogRead(A2), 0, 1023, 127, -127)+38);
-  Joystick[0].setRxAxis(map(analogRead(A3), 0, 1023, 127, -127)-5);
+  Joystick[0].setRxAxis(map(analogRead(A2), 0, 1023, 127, -127)+45);
+  Joystick[0].setRyAxis(map(analogRead(A3), 0, 1023, -127, 127)+5);
+  Joystick[0].setRzAxis(0);
+
+//  Serial.println(map(analogRead(A2), 0, 1023, 127, -127)+45);
 
 //d-pad
   if(HatX == 2) {
