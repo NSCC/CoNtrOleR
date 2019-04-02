@@ -55,7 +55,7 @@ void loop() {
   Joystick.X(analogRead(P_analogX)); 
   Joystick.Y(analogRead(P_analogY)); 
   
-  Joystick.Z(analogRead(P_analogZ));
+  Joystick.Z(1023-analogRead(P_analogZ));
   Joystick.Zrotate(1023-analogRead(P_analogZR));
   
   Joystick.sliderLeft(512);
