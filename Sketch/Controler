@@ -20,10 +20,10 @@
 #define P_analogButton1 17
 #define P_analogButton2 10
 
-#define P_analogX 14
-#define P_analogY 15
-#define P_analogZ 16
-#define P_analogZR 18
+#define P_analogZ 14
+#define P_analogZR 15
+#define P_analogX 16
+#define P_analogY 18
 
 
 int HatY = 2;
@@ -56,7 +56,7 @@ void loop() {
   Joystick.Y(analogRead(P_analogY)); 
   
   Joystick.Z(analogRead(P_analogZ));
-  Joystick.Zrotate(analogRead(P_analogZR));
+  Joystick.Zrotate(1023-analogRead(P_analogZR));
   
   Joystick.sliderLeft(512);
   Joystick.sliderRight(512);
