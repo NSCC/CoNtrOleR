@@ -1,12 +1,12 @@
-#define P_triangle 21
-#define P_circle 19
-#define P_x 20
-#define P_square 18
+#define P_triangle 8
+#define P_circle 7
+#define P_x 9
+#define P_square 6
 
-#define P_up 2
-#define P_down 4
-#define P_left 3
-#define P_right 5
+#define P_up 22
+#define P_down 21
+#define P_left 19
+#define P_right 20
 
 #define P_r1 1
 #define P_r2 0
@@ -14,24 +14,22 @@
 #define P_l1 22
 #define P_l2 23
 
-#define P_start 17
-#define P_select 6
+#define P_start 12
+#define P_select 11
 
-#define P_analogButton1 12
-#define P_analogButton2 14
+#define P_analogButton1 17
+#define P_analogButton2 10
 
-#define P_analogX 16
-#define P_analogY 17
-#define P_analogZ 2
-#define P_analogZR 1
+#define P_analogX 14
+#define P_analogY 15
+#define P_analogZ 16
+#define P_analogZR 18
 
 
 int HatY = 2;
 int HatX = 2;
-int test = 0;
 
 void setup() {
-  
   Joystick.useManualSend(true);
   
   pinMode(P_triangle, INPUT_PULLUP);
@@ -54,96 +52,37 @@ void setup() {
 
 void loop() {
   // read 6 analog inputs and use them for the joystick axis  
-  Joystick.X(1023-analogRead(11)); 
-  Joystick.Y(analogRead(10)); 
+  Joystick.X(analogRead(P_analogX)); 
+  Joystick.Y(analogRead(P_analogY)); 
   
-  Joystick.Z(1023-analogRead(15));
-  Joystick.Zrotate(analogRead(16)+10);
+  Joystick.Z(analogRead(P_analogZ));
+  Joystick.Zrotate(analogRead(P_analogZR));
   
-  Joystick.sliderLeft(1000);
-  Joystick.sliderRight(1000);
+  Joystick.sliderLeft(512);
+  Joystick.sliderRight(512);
+  
+  
+    Joystick.button(4, !digitalRead(P_triangle));
+    Joystick.button(3, !digitalRead(P_circle));
+    Joystick.button(1, !digitalRead(P_x));
+    Joystick.button(2, !digitalRead(P_square));
 
-  
-  if (digitalRead(P_triangle) == HIGH) {
-    Joystick.button(4, 1);
-  }else {
-    Joystick.button(4, 0);
-  }
-  
-  if (digitalRead(P_circle) == HIGH) {
-    Joystick.button(3, 1);
-  }else {
-    Joystick.button(3, 0);
-  }
-  
-  if (digitalRead(P_square) == HIGH) {
-    Joystick.button(1, 1);
-  }else {
-    Joystick.button(1, 0);
-  }
-  
-  if (digitalRead(P_x) == HIGH) {
-    Joystick.button(2, 1);
-  }else {
-    Joystick.button(2, 0);
-  }
-//  
-//  if (digitalRead(P_r1) == HIGH) {
-//    Joystick.button(5, 1);
-//  }else {
-//    Joystick.button(5, 0);
-//  }
-//  
-//  if (digitalRead(P_r2) == HIGH) {
-//    Joystick.button(7, 1);
-//  }else {
-//    Joystick.button(7, 0);
-//  }
-//  
-//  if (digitalRead(P_l1) == HIGH) {
-//    Joystick.button(6, 1);
-//  }else {
-//    Joystick.button(6, 0);
-//  }
-//  
-//  if (digitalRead(P_l2) == HIGH) {
-//    Joystick.button(8, 1);
-//  }else {
-//    Joystick.button(8, 0);
-//  }
-//  
-//  if (digitalRead(P_start) == HIGH) {
-//    Joystick.button(10, 1);
-//  }else {
-//    Joystick.button(10, 0);
-//  }
-//  
-//  if (digitalRead(P_select) == HIGH) {
-//    Joystick.button(9, 1);
-//  }else {
-//    Joystick.button(9, 0);
-//  }
-//  
-//  
-//  if (digitalRead(P_analogButton1) == HIGH) {
-//    Joystick.button(11, 1);
-//  }else {
-//    Joystick.button(11, 0);
-//  }
-//  
-//  if (digitalRead(P_analogButton2) == HIGH) {
-//    Joystick.button(12, 1);
-//  }else {
-//    Joystick.button(12, 0);
-//  }
+    
+    Joystick.button(8, !digitalRead(P_select));
+    Joystick.button(9, !digitalRead(P_start));
+
+    
+    Joystick.button(10, !digitalRead(P_analogButton1));
+    Joystick.button(11, !digitalRead(P_analogButton2));
+
   
 
   
   //D-pad
 //if statements are done like this so that it's default state (when both buttons are not pushed) has the least amount of code to run though
 //
-  if (digitalRead(P_up) == LOW) {
-    if (digitalRead(P_down) == LOW) {
+  if (digitalRead(P_up) == HIGH) {
+    if (digitalRead(P_down) == HIGH) {
     //if nether of the buttons are pushed set HatY to 2 (It's default value)
       HatY = 2;
     }else {
@@ -153,8 +92,8 @@ void loop() {
       HatY = 3;
   }
   
-  if (digitalRead(P_left) == LOW) {
-    if (digitalRead(P_right) == LOW) {
+  if (digitalRead(P_left) == HIGH) {
+    if (digitalRead(P_right) == HIGH) {
     //if nether of the buttons are pushed set HatY to 2 (It's default value)
       HatX = 2;
     }else {
